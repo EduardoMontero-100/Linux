@@ -1,3 +1,8 @@
+git remote add origin https://github.com/EduardoMontero-100/Linux.git
+git config -- global user.name "EduardoMontero-100"
+
+
+
 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
 git push https://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@github.com/EduardoMontero-100/Plotly-Dashboards.git
 --------------------
