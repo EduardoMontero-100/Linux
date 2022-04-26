@@ -1,0 +1,320 @@
+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
+git push https://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@github.com/EduardoMontero-100/Plotly-Dashboards.git
+--------------------
+--------------------
+Comandos Linux:
+--------------------
+--------------------
+ls -l (muestra los archivos con mas detalle)
+ls -a (muestra los archivos ocultos)
+ls -t (muestra los archivos en orden cronologico)
+ls -r (muestra los archivos en orden cronologico inverso)
+ls -latrgit add
+ls -R (lista los archivos de forma recursiva)
+tree -d (lista los directorios solamente)
+
+Cambiar Permisos:
+chmod (cambiar permisos)
+chmod g+x python.py (asignar permisos ejecucion al grupo)
+chmod o-wx,g-x python.py (asignar permisos de ejecucion y escritura sobre others;
+                          quitar el permiso de escritura al grupo del archivo)
+chmod a=r python.py (archivo de solo lectura)
+chmod u=wrx,g=wr,o= python.py (otros usuarios no pueden hacer nada sobre este archivo)
+r w x
+4 2 1 (notacion octal)
+1 1 1 (notacion binaria)
+
+u(usuario) g(grupo) o(otros)
+chmod 754 (todos los accesos al usuario, lectura y escritura para el grupo y lectura para otros usuarios)
+
+chgrp adm python.py (cambia el grupo del archivo)
+
+touch (crea un archivo si no existe, si existe actualiza su fecha de modificacion)
+umask   007 (para definir los permisos de creacion del archivo)
+        777 para directorios
+        666 para archivos
+
+umask -S modo (modo contrario al chmod)
+umask -S 700 (quitar todos los permisos)
+mascaras de creación más usadas en linux: 
+022
+002
+077
+007
+u=rwx,g=rwx,o=rx Notación simbólica
+--------------------------------------------
+find (buscar archivos)
+locate (buscar archivos. Es más rápido que find)
+--------------------------------------------
+Contenido de un archivo:
+cat file
+more file
+less file
+head file
+tail file
+head -2 file.txt
+tail -2 file.txt
+nano file.txt (editar el contenido de un archivo usando el editor nano. Facil pero no es poderoso)
+vi file
+----------------------------------------
+-- Emacs (Editor de texto)
+-- gedit (Es el programa más usado )
+----------------------------------------
+rm -f file (borrar forsosamente un archivo)
+rm -r directory (borrar recursivamente un directorio)
+cp file_source file_destination
+cp -i (copiar de forma interactiva)
+cp -r archivo_origen destino (copiar de manera recursiva al destino)
+mv ruta_origen ruta_destino (si no exista la ruta renombra el directorio. Los mismo ocure con los archivos)
+sort file (ordena el texto contenido en un archivo)
+sort -u file (elimina lineas duplicadas)
+sort -ru file (elimina lineas duplicadas e invierte el orden)
+sort -u -k2 file (ordena en base a la segunda columna del archivo)
+tar (Paquetes de archivos )
+tar cf folder.tar folder
+tar tf folder.tar (en lista el contenido del archivo .tar)
+tar xf /home/eduardo/folder2.tar (descomprime el contido del archivo .tar)
+tar xvf /home/eduardo/folder2.tar (muestra el resultado de la operacion)
+zip file (para comprimir el archivo)
+du -k file (ver el peso de un archivo en kb)
+gunzip file (descomprimir un archivo)
+
+--------------------------------
+Wildcards (Globing / Comodines)
+--------------------------------
+* ==> todos
+? ==> exactamente un caracter
+a?.txt (a1.txt, a2.txt)
+ca[nt]*:
+can 
+cat
+candy
+[!aeiou]*: Un caracter que no este dentro del par de corchetes
+[a-g]*: Todos los archivos que comiencen con a-b-c-d-e-f-g 
+[3-6]*: Coinciden todos los archivos que comiencen con 3-4-5 ó 6
+
+Clases predefinidas de caracteres:
+[[:alpha:]]
+[[:alnum:]]
+[[:digit:]]
+[[:lower:]] 
+[[:space:]]  (todos los espacios y sangrias)
+[[:upper:]]
+\ escapar caracteres: Se usa para incluir caracteres del Wildcard en un patrón de coincidencias
+*\?
+done? (ya es que es una palabra que termina con un signo de interrogación)
+ls a*
+ls ? (enlistar todos los archivos que empiezan con un solo caracter)
+ls ??
+ls -l a*.txt
+ls c[aeiou]t 
+ls *[[:digit:]]
+rm ?? (borro archivos que tienen dos caracteres)
+
+Tipos de entrada y salida (Tipos I/O)
+Entrada estandar: 0
+Salida estandar: 1
+Error estandar: 2
+Redireccionamiento:
+ > in
+ >> añadir la salida al final del archivo
+ < out
+Guardo la salida de un comando a un archivo: 
+ls -l > files.txt
+ls -l 1> files.txt
+ls -l >> files.txt (añade al final del archivo)
+sort < files.txt (ordenar el archivo txt)
+sort < files.txt >> sorted_files.txt (guarda en el archivo sorted_files.txt, el contenido de files.txt ordenado)
+ls files.txt not-here 2>out.err (guarda el error resultante del comando en el archivo out.err)
+ls files.txt not-here-d 1>out 2>out.err(combina la salida estandar y el error)
+ls files.txt not-heere > out.both 2>&1 (guarda la salida y el error en el mismo archivo)
+
+ls files.txt not-here 2>/dev/null (guardo los errores en el directorio /dev/null)
+----------------------------------------
+ Comparando el contenido de archivos:
+----------------------------------------
+ diff archivo1 archivo2:
+  3c3 ==> La tercera linea del archivo1 es diferente a la tercera linea del archivo2
+  Acccion c(change); a(add); d(delete)
+
+ sdiff archivo1 archivo2
+:
+Prueba1								Prueba1
+Prueba2								Prueba2
+Prueba3							      |	PruebaX
+Prueba4								Prueba4
+vimdiff archivo1 archivo2
+----------------------------------------
+grep: Buscar texto dentro de un archivo
+tr comando para traducir caracteres
+cut cotar porciones de un archivo especificando a un caracter
+more / less (paginar el resultado de comandos anteriores)
+----------------------------------------
+Pipes: Ejecutar comandos uno detrás de otro:
+grep -ni p file1 | sort | tr ":" " " |column -t
+grep bob file1 | cut -d: -f1,3 | sort | tr ":" " "|column -t
+
+
+SCP (secury copy )
+SFTP (Secure File Transfer Protocol) son extensiones de SSH
+SSH (Secury Shell)
+Putty (para windows)
+Clientes SCP/SFTP (Interfaz gráfica)
+- Cyberduck
+- FileZilla
+- WinSCP (solo windows)
+La transferencia de archivos requiere un programa cliente
+Clientes para terminal: scp, sftp, ftp (inseguro)
+
+$P1 (variable de entorno) Para personalizar el prompt del shell
+eduardo@eduardo-Aspire-A315-23:~$ 
+.bash_profile / .profile (archivo de inicializacion)
+
+Alias: (usar los alias al mínimo)
+- Acceso directo a comandos
+- Son conocidos como expansores de texto (o atajos)
+- Hay que exportar los alias al archivo .bash_profile (.profile)
+- eduardo@eduardo-Aspire-A315-23:~/Desktop$ alias ll='ls -l'
+
+Variables de Entorno:
+- Unidades de almacenamiento  (pares clave valor)
+- Pueden cambiar el comportamiento de una aplicación
+- printenv (muestra las variables de entorno y su valor)
+  printenv HOME
+  echo $HOME
+- por estandar las variables de entorno son escritas en mayúsculas
+- como crear una variable de entorno:
+  export VARIABLE="valor" 
+  export EDITOR="vi"
+  export TZ="US/Pacific" (Time zone)
+
+- eliminar la variable de entorno:
+  unset VARIABLE (unser TZ) (se pone el valor por defecto)
+- para hacer que los cambios sean persistentes hay que modificar el archivo de inicialización
+
+Procesos y Control de Trabajo:
+ps (enlistar procesos de sesion)
+ps -e (estados de todos los procesos)
+ps -f (igual al anterior pero mas detallado)
+ps -eH (muestra arbol de procesos)
+ps -e --forest (muestra arbol de procesos)
+ps -u usuario (muestra los procesos de un usuario)
+pstree (muestra arbol de procesos)
+top (visualizador de procesos interactivos)
+htop (visualizador de procesos interactivos))
+ps -p pid (estado de un proceso especifico)
+
+Procesos ejecutados en segundo plano (no bloquean el shell. Procesos ejecutados en primer plano bloquean el shell)
+comando&
+jobs [%job] Enlista los procesos en segundo plano
+bg [%job] Pasa a segundo plano un proceso suspendido
+fg [%job] Pasa a primer plano un proceso que se está ejecutando en segundo plano
+kill Elimina un proceso por su PID
+kill -l
+
+Cron Jobs (tareas programadas)
+crontab:comando para agendar jobs programados
+crontab: es un archivo que tiene los cron job
+cada linea de un crontab es un cron job
+(cuando|que) 
+*****comando
+minutos|hora|dia del mes|mes del año|dia de la semana
+0 7 * * 1 /opt/sales/bin/weekly-report (todos los lunes a las 7 am)
+0,30 * * * * /opt/acme/bin/half-hour-check (corre cada 30 minutos)
+*/2 * * * * /opt/acme/bin/half-hour-check (corre cada 30 minutos)
+0-4 * * * * /opt/acme/bin/half-hour-check (corre los primeros 5 minutos de cada hora)
+Atajos de crontab
+@yearly
+@annually
+@monthly ...
+Ejemplos de crontab:
+crontab -l (lista todos los cronjobs)
+crontab -e (sirve para editar el cronjob)
+crontab -r (sirve para borrar todos los cronjob)
+
+su (cambiar usuario en linux)
+su (tratamos de iniciar sesion como super usuario)
+su -root (tratamos de iniciar sesion como super usuario)
+su -c (especifica un comando a ser ejecutado)
+
+whoami (usuario con el que estamos)
+sudo adduser new_user
+sudo passwd new_user
+sudo comando (necesito especificar solamente el password de mi usuario)
+sudo su (cambiarte a la cuenta root)
+sudo su -(inicia sesion con al cuenta root con el entorno root)
+sudo su - new_user (inicia sesion en la cuenta new_user)
+sudo -s (cambio al usuario root)
+-----------------------
+Historial del Shell
+-----------------------
+
+/home/eduardo/.bash_history
+/home/eduardo/.history
+/home/eduardo/.histfile
+
+HISTSIZE: Controla el numero de comandos a retener en memoria
+
+export HISTSIZE = 1000
+!N (!=BANG)
+!! (ejecutar el comando anterior)
+!cat file_name
+
+Administración de Paquetes (coleccion de archivos que constituyen una app)
+Distribuciones de Linuz que usan los RPM
+- Red Hat 
+- CentOs
+- Fedora
+
+YUM (administración de paquetes basados en RPM)
+
+yum info paquete
+yum install -y paquete
+yum remove paquete
+----------------------------------------------------
+apt-get en lugar de yum en ubuntu
+----------------------------------------------------
+
+RPM (administrador de paquetes, red hat package managment)
+rpm -qa (enlista todos los paquetes instalados en el sistema)
+rpm -ql /ruta/al/archivo (enlista los paquetes del archivo)
+rpm -ivh paquete.rpm (instalar el paquete)
+rpm -e paquete
+
+Parar instalar paquetes (rpm)
+Step 1: Install Alien package
+sudo apt-get install alien
+Step 2: Convert .rpm package to .deb 
+sudo alien <name of package>.rpm
+Step 3: Install the Converted Package
+sudo dpkg -i <name of package>.deb
+Step 4: Install RPM Package Directly Onto the System on Ubuntu
+sudo alien -i <name of package>.rpm
+
+APT (.deb)
+
+
+
+----------------------------------------------------
+Instalación de paquetes en ubutu
+----------------------------------------------------
+
+apt-cache search inkscape (buscar el paquete)
+apt-cache show inkscape|less (mostrar las caracteristicas del paquete)
+sudo apt-get install inkscape
+sudo apt-get remove inkscape
+
+Instalar paquetes .deb
+sudo dpkg -i nautilus-dropbox_2020.03.04-2_amd64.deb 
+Enlistar todos los paquetes instalados en el sistema
+dpkg -l |less
+Los paquetes se usan para instalar software en linux
+Administrador de paquetes: sirve para instalar paquetes:
+- RPM
+  -yum
+  -rpm
+-DEB
+  -apt
+  -dpkg
+
+
