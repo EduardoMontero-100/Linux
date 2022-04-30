@@ -1,7 +1,7 @@
-git remote add origin https://github.com/EduardoMontero-100/Linux.git
+git init
 git config -- global user.name "EduardoMontero-100"
-
-
+git clone
+git remote add origin https://github.com/EduardoMontero-100/Linux.git
 
 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
 git push https://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@github.com/EduardoMontero-100/Plotly-Dashboards.git
